@@ -1,0 +1,21 @@
+{
+  "name": "walternate",
+  "version": "0.0.1",
+  "description": "Trying to find the movies you love by finding your favourite actors and producers",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "athieriot",
+  "license": "BSD",
+  "dependencies": {
+     "express": "3.1.0",
+     "moviedb": "0.0.5",
+     "neo4j": "0.2.19",
+     "async": "0.1.22"
+  }
+}
