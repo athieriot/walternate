@@ -14,8 +14,9 @@
   "license": "BSD",
   "dependencies": {
      "express": "3.1.0",
-     "moviedb": "0.0.5",
+     "moviedb": "0.1.0",
      "neo4j": "0.2.19",
-     "async": "0.1.22"
+     "async": "0.1.22",
+     "underscore": "1.4.4"
   }
 }
