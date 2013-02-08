@@ -3,3 +3,4 @@ publish/
 temp/
 .sass-cache/
 node_modules/
+reports/

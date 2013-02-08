@@ -166,6 +166,7 @@ module.exports = function( grunt ) {
     },
     
     server: {
+      open: false,
       app: {
         main: './server'
       },
@@ -182,5 +183,14 @@ module.exports = function( grunt ) {
       grunt.log.write(stdout);
       done(err);
     });
+  });
+
+  grunt.registerTask('frisby', 'run the frisby tests', function() {
+    var done = this.async();
+    require('child_process').exec('jasmine-node test/frisby/*.* --junitreport', function(err, stdout) {
+      grunt.log.write(stdout);
+      done(err);
+    })
+  
   });
 };

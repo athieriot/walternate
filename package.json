@@ -18,5 +18,8 @@
      "neo4j": "0.2.19",
      "async": "0.1.22",
      "underscore": "1.4.4"
+  },
+  "devDependencies": {
+     "frisby": "0.6.7"
   }
 }
