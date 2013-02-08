@@ -4,28 +4,18 @@ var db = new neo4j.GraphDatabase('http://localhost:7474');
 var async = require('async');
 var _ = require('underscore')._;
 
-module.exports = function(app){
+module.exports = function(app) {
 
-   app.get('/api/persons/:name', function(req, res) {
-      mdb.searchPerson({query: req.params.name}, function(err, result) {
-         res.send(result);
-      });
-   });
-   app.get('/api/person/:id/info', function(req, res) {
-      mdb.personInfo({id: req.params.id}, function(err, result) {
-         res.send(result);
-      });
-   });
-
-   app.get('/api/movies/:name', function(req, res) {
-      mdb.searchMovie({query: req.params.name}, function(err, result) {
-         res.send(result);
-      });
-   });
-   app.get('/api/movie/:id/info', function(req, res) {
-      mdb.movieInfo({id: req.params.id}, function(err, result) {
-         res.send(result);
-      });
+   app.get('/api/:method/:name', function(req, res) {
+      mdb[req.params.method](
+         {
+            query: req.params.name,
+            id: req.params.name
+         }, 
+         function(err, result) {
+            res.send(result);
+         }
+      );
    });
 
    var indexMovie = function(id, outputCallback) {
@@ -59,7 +49,7 @@ module.exports = function(app){
             });
          } else {
             console.log("Movie: " + movieInfo.title + " already in the index.");
-            outputCallback(null, result);
+            outputCallback(null, _.first(result));
          }
       });
    };
@@ -67,16 +57,18 @@ module.exports = function(app){
    var addRelationshipTo = function(personNode, movieNode, callback) {
       async.waterfall([
          function(innerCallback) {
-            personNode.createRelationshipTo(movieNode, 'playedIn', {}, innerCallback);
+            personNode.createRelationshipTo(movieNode, 'playedIn', {data: "test"}, innerCallback);
          },
          function(relationship, innerCallback) {
             relationship.save(innerCallback); 
          }
       ], function(err, result) {
          if(err) {
-            console.log("Failing to save this relashionship.");
+            console.log("Failing to save this relashionship: " + err);
+            callback(err, result);
          } else {
             console.log("Relashionship saved.");
+            callback(null, result);
          }
       }
    )};
@@ -93,8 +85,10 @@ module.exports = function(app){
             personInfo = person;
             db.getIndexedNodes('person', 'id', person.id, callback);
          },
-         function(indexedPerson, callback) {
-            addRelationshipTo(indexedPerson, movieNode, callback);
+         function(indexedPersons, callback) {
+            if(! _.isEmpty(indexedPersons)) {
+               addRelationshipTo(_.first(indexedPersons), movieNode, callback);
+            }
          }
       ], function(err, result) {
          if(err || _.isEmpty(result)) {
@@ -131,6 +125,7 @@ module.exports = function(app){
 
    app.put('/api/movie/:id/casts', function(req, res) {
       var movieNode = {};
+
       async.waterfall([
          function(callback) {
             indexMovie(req.params.id, callback);
@@ -159,10 +154,6 @@ module.exports = function(app){
   });
 
   app.put('/api/actor/:id', function(req, res) {
-
-  });
-
-  app.delete('/api/actor/:id', function(req, res) {
 
   });
 };
