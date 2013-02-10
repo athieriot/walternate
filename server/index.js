@@ -2,7 +2,8 @@
 var express = require('express');
 var app = express();
  
-require('./actorRoutes')(app);
+require('./movieDbRoutes')(app);
+require('./graphRoutes')(app);
 /* Required Route Files */
 
 module.exports = app;

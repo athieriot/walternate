@@ -1,22 +1,8 @@
-var mdb = require('moviedb')('658ffcf4d816755aeb5869136c815b87');
 var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase('http://localhost:7474');
-var async = require('async');
-var _ = require('underscore')._;
+var mdb = require('./movieDbRoutes').MovieDb;
 
 module.exports = function(app) {
-
-   app.get('/api/:method/:name', function(req, res) {
-      mdb[req.params.method](
-         {
-            query: req.params.name,
-            id: req.params.name
-         }, 
-         function(err, result) {
-            res.send(result);
-         }
-      );
-   });
 
    var indexMovie = function(id, outputCallback) {
       var movieInfo = {};
@@ -146,14 +132,10 @@ module.exports = function(app) {
       });
    });
 
-   app.get('/api/actor/:id', function(req, res) {
-  });
-
   app.post('/api/actors', function(req, res) {
     
   });
-
   app.put('/api/actor/:id', function(req, res) {
 
   });
-};
+}
