@@ -4,18 +4,20 @@ var _ = require('underscore')._;
 
 module.exports = function(app) {
 
-   app.get('/api/:method/:name', function(req, res) {
-      moviedbCall(req.params.method, req.params.name, function(err, result) {
+   app.get('/api/:method/:parameter?', function(req, res) {
+      moviedbCall(req.params.method, req.params.parameter, req.query, function(err, result) {
          res.send(result);
       });
    });
 };
 
-moviedbCall = function(method, parameter, callback) {
-   mdb[method] ({
+moviedbCall = function(method, parameter, options, callback) {
+   var query = _.extend(options, {
       query: parameter,
       id: parameter
-   }, callback)
+   });
+
+   mdb[method](query, callback);
 }
 
 module.exports.MovieDB = {
