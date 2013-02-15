@@ -4,4 +4,4 @@ yeomen build
 
 git commit -a -m'Update for release'
 
-git push origin master
+git push heroku master
