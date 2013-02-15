@@ -71,8 +71,8 @@ frisby.create('Search for ALL the movies of a genre')
    .get('http://' + server + '/api/genreMovies/28?include_all_movies=true')
    .expectStatus(200)
    .expectJSON("results.?", {
-      id: 12589,
-      title: "Jimmy Neutron: Boy Genius"
+      id: 57414,
+      title: "Ember Days"
    })
    .expectJSON({
       total_results: (number) -> number > 10000
