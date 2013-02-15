@@ -1,0 +1,7 @@
+#!/bin/bash
+
+yeomen build
+
+git commit -a -m'Update for release'
+
+git push origin master
