@@ -1,27 +1,33 @@
 var neo4j = require('neo4j');
-var neodb = new neo4j.GraphDatabase(process.env.NEO4J_URL || 'http://localhost:7474');
+var neodb = require('../common/graphdb').neodb;
 
 module.exports = function(app) {
 
    app.get('/query/:title', function(req, res) {
+      var department = req.query.department || ".*";
+
       var query = [
          'START me = node:movie("id:' + req.params.title + '")',
-         'MATCH (me)<-[:beIn]-(person)-[:beIn]->(movie)',
-         'RETURN movie'
+         'MATCH (me)<-[relation:beIn]-(person)-[:beIn*..2]->(movie)',
+         'WHERE relation.department =~ "' + department + '"',
+         'RETURN movie, person, relation'
       ].join('\n');
-
-      var params = {
-           movieTitle: req.params.title
-      };
 
       neodb.query(query, params, function (err, results) {
          if (err) res.send(err);
          else {
-            var movies = results.map(function (result) {
-               return JSON.parse(result['movie']['_data']['data'].infos).title;
+            var summary = results.map(function (result) {
+               var movie = JSON.parse(result['movie']['_data']['data'].infos).title;
+               var person = JSON.parse(result['person']['_data']['data'].infos).name;
+               var relation = result['relation']['_data']['data'].department;
+               return {
+                  movie: movie,
+                  via: person,
+                  relation: relation
+               }
             });
 
-            res.send(movies);
+            res.send(summary);
          }
       });
    });

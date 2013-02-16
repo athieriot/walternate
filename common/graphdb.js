@@ -1,5 +1,5 @@
 var neo4j = require('neo4j');
-var neodb = new neo4j.GraphDatabase(process.env.NEO4J_URL || 'http://localhost:7474');
+var neodb = new neo4j.GraphDatabase(process.env.NEO4J_URL || 'http://localhost:7474/');
 var async = require('async');
 
 var _ = require('underscore')._;
@@ -85,6 +85,7 @@ var addRelation = function(person, movie, personNode, movieNode, hop) {
 }
 
 module.exports = {
+   neodb: neodb,
    addMovie: addMovie,
    addPerson: addPerson,
    addRelation: addRelation
