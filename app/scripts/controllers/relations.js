@@ -1,11 +1,10 @@
 'use strict';
 
+walternateApp.controller('RelationsController', function($scope, $resource, $routeParams) {
+   $scope.configuration = $resource("/api/configuration", {format:'json'} ).get();
 
-walternateApp.controller('RelationsController', function($scope, $resource) {
    $scope.graphdb = $resource("/query/:id", {id:'@id', format:'json'} );
 
-   $scope.searchReco = function(id) {
-      $scope.relations = $scope.graphdb.query({id: id});
-   }
+   $scope.relations = $scope.graphdb.query({id: $routeParams.movieId});
 });
 

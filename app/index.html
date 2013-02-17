@@ -38,9 +38,9 @@
 
          <ul class=thumbnails>
             <li ng-repeat="movie in movies.results | filter:popular">
-               <a ng-click="searchReco(movie.id)" class="thumbnail">
+               <a href="#/Relations/{{ movie.id }}" class="thumbnail">
 
-                  <img alt="{{ movie.original_title }}" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/{{movie.poster_path}}" />
+                  <img alt="{{ movie.original_title }}" src="{{ configuration.images.base_url }}/w92/{{movie.poster_path}}" />
                </a>
             </li>
          </ul>

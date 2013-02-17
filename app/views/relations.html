@@ -1,19 +1,23 @@
 <div class="row">
    <div class="span12">
       <table class="table">
-         <tr ng-repeat="relation in relations | orderBy:department">
+         <tr ng-repeat="relation in relations | orderBy:'department'">
             <td>
             <div class="media">
-               <span class="thumbnail pull-left">
-                  <img class="media-object" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/{{relation.movie.poster_path}}">
-               </span>
-               <span class="thumbnail pull-left">
-                  <img class="media-object" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/{{relation.via.profile_path}}">
+               <span class="thumbnail pull-left" style="margin-right: 10px;">
+                  <img class="media-object" src="{{ configuration.images.base_url }}/w92/{{relation.movie.poster_path}}">
                </span>
                <div class="media-body">
-                  <h4 class="media-heading">{{ relation.movie.original_title }}</h4>
+                  <h4 class="media-heading"><a href="http://imdb.com/title/{{ relation.movie.imdb_id }}/">{{ relation.movie.original_title }}</a> via {{ relation.person.name }}, {{ relation.department }} </h4>
+                  <p>
+                     {{ relation.movie.overview }}
+                  </p>
 
-                  via {{ relation.via.name }}, {{ relation.relation }}
+                  <div class="media pull-right">
+                     <span class="thumbnail">
+                        <img class="media-object" src="{{ configuration.images.base_url }}/t/p/w45/{{relation.person.profile_path}}">
+                     </span>
+                  </div>
                </div>
             </div>
             </td>

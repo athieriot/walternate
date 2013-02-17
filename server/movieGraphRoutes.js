@@ -1,5 +1,6 @@
 var neo4j = require('neo4j');
 var neodb = require('../common/graphdb').neodb;
+var _ = require('underscore')._;
 
 module.exports = function(app) {
 
@@ -17,13 +18,10 @@ module.exports = function(app) {
          if (err) res.send(err);
          else {
             var summary = results.map(function (result) {
-               var movie = JSON.parse(result['movie']['_data']['data'].infos);
-               var person = JSON.parse(result['person']['_data']['data'].infos);
-               var relation = result['relation']['_data']['data'].department;
                return {
-                  movie: movie,
-                  person: person,
-                  department: relation
+                  movie: JSON.parse(result['movie']['_data']['data'].infos),
+                  person: JSON.parse(result['person']['_data']['data'].infos),
+                  department: result['relation']['_data']['data'].department
                }
             });
 
