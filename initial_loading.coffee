@@ -61,7 +61,7 @@ dumpGenre = (genre, hop, page = 1) =>
    async.waterfall [
       (callback) =>
          @logger.verbose "Indexing genre: #{genre.name} - page: #{page}"
-         moviedb.call 'genreMovies', genre.id, {page: page, include_all_movies: true}, callback
+         moviedb.call 'genreMovies', genre.id, {page: page, include_all_movies: @include_all_movies}, callback
       ,
       (movies, callback) ->
          async.forEach movies.results, dumpMovie, async.apply(callback, null, {
@@ -87,6 +87,7 @@ dumpGenre = (genre, hop, page = 1) =>
 program
   .version('0.0.1')
   .option('-v, --verbose', 'Verbose mode')
+  .option('-a, --all', 'Include all movies')
   .parse(process.argv);
 
 @logger = new winston.Logger({
@@ -95,13 +96,15 @@ program
    ]
 }).cli()
 
+@include_all_movies = program.all
+
 async.waterfall [
    (callback) ->
       moviedb.call 'genreList', {}, {}, callback
    ,
    (genres, callback) ->
-      #async.forEach genres.genres, dumpGenre, callback
-      dumpGenre genres.genres[5], callback
+      async.forEachSeries genres.genres, dumpGenre, callback
+      #dumpGenre genres.genres[0], callback
 ], (err, result) =>
    time = startDate.fromNow()
    if (err)

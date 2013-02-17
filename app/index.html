@@ -2,47 +2,70 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-        <title></title>
-        <meta name="description" content=""/>
-        <meta name="viewport" content="width=device-width"/>
-        <link rel="stylesheet" href="styles/main.css"/>
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+   <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+      <title></title>
+      <meta name="description" content=""/>
+      <meta name="viewport" content="width=device-width"/>
+      <link rel="stylesheet" href="styles/main.css"/>
+   </head>
+   <body ng-app="walternateApp">
 
-    </head>
-    <body ng-app="walternateApp">
-
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-        <![endif]-->
+      <!--[if lt IE 7]>
+         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+      <![endif]-->
         
-        <!--[if lt IE 9]>
-            <script src="scripts/vendor/es5-shim.min.js"></script>
-            <script src="scripts/vendor/json3.min.js"></script>
-        <![endif]-->
+      <!--[if lt IE 9]>
+         <script src="scripts/vendor/es5-shim.min.js"></script>
+         <script src="scripts/vendor/json3.min.js"></script>
+      <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <div class="container" ng-view></div>
+      <div class="container" ng-controller="SearchController">
+         <div class="navbar">
+            <div class="navbar-inner">
+               <a class="brand" href="#">Walternate</a>
+               <ul class="nav">
+                  <form ng-submit="search(movieTitle)" class="navbar-search pull-left">
+                     <span>Search for a movie you love</span>
+                     <input id="searchedTitle" type="text" class="search-query" ng-model="movieTitle"></input>
+                  </form>
+               </ul>
+            </div>
+         </div>
 
-        <script src="scripts/vendor/angular.js"></script>
+         <ul class=thumbnails>
+            <li ng-repeat="movie in movies.results | filter:popular">
+               <a ng-click="searchReco(movie.id)" class="thumbnail">
 
-        <!-- build:js scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/actor/actorIndex.js"></script>
-        <script src="scripts/controllers/actor/actorCreate.js"></script>
-        <script src="scripts/controllers/actor/actorUpdate.js"></script>
-        <script src="scripts/controllers/actor/actorView.js"></script>
-        <!-- endbuild -->
+                  <img alt="{{ movie.original_title }}" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/{{movie.poster_path}}" />
+               </a>
+            </li>
+         </ul>
+      </div>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-    </body>
+
+      <!-- Add your site or application content here -->
+      <div class="container" ng-view></div>
+
+      <script src="components/angular/angular.js"></script>
+      <script src="components/angular-resource/angular-resource.js"></script>
+      <script src="components/underscore/underscore-min.js"></script>
+      <script src="components/underscore.string/lib/underscore.string.js"></script>
+      <!-- build:js scripts/scripts.js -->
+      <script src="scripts/app.js"></script>
+      <script src="scripts/controllers/search.js"></script>
+      <script src="scripts/controllers/relations.js"></script>
+      <!-- endbuild -->
+
+      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+      <script>
+         var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+         s.parentNode.insertBefore(g,s)}(document,'script'));
+      </script>
+   </body>
 </html>

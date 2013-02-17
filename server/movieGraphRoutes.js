@@ -13,17 +13,17 @@ module.exports = function(app) {
          'RETURN movie, person, relation'
       ].join('\n');
 
-      neodb.query(query, params, function (err, results) {
+      neodb.query(query, {}, function (err, results) {
          if (err) res.send(err);
          else {
             var summary = results.map(function (result) {
-               var movie = JSON.parse(result['movie']['_data']['data'].infos).title;
-               var person = JSON.parse(result['person']['_data']['data'].infos).name;
+               var movie = JSON.parse(result['movie']['_data']['data'].infos);
+               var person = JSON.parse(result['person']['_data']['data'].infos);
                var relation = result['relation']['_data']['data'].department;
                return {
                   movie: movie,
-                  via: person,
-                  relation: relation
+                  person: person,
+                  department: relation
                }
             });
 

@@ -1,0 +1,23 @@
+<div class="row">
+   <div class="span12">
+      <table class="table">
+         <tr ng-repeat="relation in relations | orderBy:department">
+            <td>
+            <div class="media">
+               <span class="thumbnail pull-left">
+                  <img class="media-object" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/{{relation.movie.poster_path}}">
+               </span>
+               <span class="thumbnail pull-left">
+                  <img class="media-object" src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/{{relation.via.profile_path}}">
+               </span>
+               <div class="media-body">
+                  <h4 class="media-heading">{{ relation.movie.original_title }}</h4>
+
+                  via {{ relation.via.name }}, {{ relation.relation }}
+               </div>
+            </div>
+            </td>
+         </tr>
+      </table>
+   </div>
+</div>

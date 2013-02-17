@@ -10,18 +10,18 @@ var objectifyMovie = function(movie) {
    return {infos: JSON.stringify(movie)};
 }
 var identifyMovie = function(movie) {
-   return _.slugify(movie.title);
+   return movie.id;
 }
 
 var objectifyPerson = function(person) {
    return {infos: JSON.stringify(person)};
 }
 var identifyPerson = function(person) {
-   return _.slugify(person.name);
+   return person.id;
 }
 
 var identifyRelation = function(person, movie) {
-   return _.slugify(person.name + "_" + movie.title);
+   return person.id + "_" + movie.id;
 }
 
 var addMovie = function(movie, hop) {
