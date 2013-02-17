@@ -1,30 +1,6 @@
-# Error: Unknown provider: aProvider <- a
-    at http://localhost:3501/components/angular/angular.js:2652
-    at getService (http://localhost:3501/components/angular/angular.js:2780)
-    at http://localhost:3501/components/angular/angular.js:2657
-    at getService (http://localhost:3501/components/angular/angular.js:2780)
-    at invoke (http://localhost:3501/components/angular/angular.js:2798)
-    at instantiate (http://localhost:3501/components/angular/angular.js:2830)
-    at http://localhost:3501/components/angular/angular.js:4657
-    at http://localhost:3501/components/angular/angular.js:4236
-    at forEach (http://localhost:3501/components/angular/angular.js:117)
-    at nodeLinkFn (http://localhost:3501/components/angular/angular.js:4237)
-    at compositeLinkFn (http://localhost:3501/components/angular/angular.js:3869)
-    at compositeLinkFn (http://localhost:3501/components/angular/angular.js:3872)
-    at publicLinkFn (http://localhost:3501/components/angular/angular.js:3775)
-    at http://localhost:3501/components/angular/angular.js:934
-    at http://localhost:3501/components/angular/angular.js:7905
-    at http://localhost:3501/components/angular/angular.js:7985
-    at http://localhost:3501/components/angular/angular.js:935
-    at invoke (http://localhost:3501/components/angular/angular.js:2813)
-    at bootstrap (http://localhost:3501/components/angular/angular.js:936)
-    at angularInit (http://localhost:3501/components/angular/angular.js:906)
-    at http://localhost:3501/components/angular/angular.js:14600
-    at trigger (http://localhost:3501/components/angular/angular.js:1693)
-    at http://localhost:3501/components/angular/angular.js:1928 (undefined, #undefined)
 CACHE MANIFEST
 
-# Time: Sun Feb 17 2013 20:07:01 GMT+0000 (GMT)
+# Time: Sun Feb 17 2013 20:56:03 GMT+0000 (GMT)
 # This manifest was created by confess.js, http://github.com/jamesgpearce/confess
 #
 # Retrieved URL: http://localhost:3501/#/
@@ -49,9 +25,11 @@ components/angular-resource/angular-resource.js
 components/angular/angular.js
 components/underscore.string/lib/underscore.string.js
 components/underscore/underscore-min.js
+http://localhost:3501/app/images/glyphicons-halflings-white.png
+http://localhost:3501/app/images/glyphicons-halflings.png
 http://www.google-analytics.com/ga.js
-scripts/091afeef.scripts.js
-styles/051c0509.main.css
+scripts/3a9af4da.scripts.js
+styles/cff1b42f.main.css
 
 NETWORK:
 *
