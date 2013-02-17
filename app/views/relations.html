@@ -1,5 +1,6 @@
 <div class="row">
    <div class="span12">
+      <h4>You may love too:</h4>
       <table class="table">
          <tr ng-repeat="relation in relations | orderBy:'department'">
             <td>
@@ -8,7 +9,7 @@
                   <img class="media-object" src="{{ configuration.images.base_url }}/w92/{{relation.movie.poster_path}}">
                </span>
                <div class="media-body">
-                  <h4 class="media-heading"><a href="http://imdb.com/title/{{ relation.movie.imdb_id }}/">{{ relation.movie.original_title }}</a> via {{ relation.person.name }}, {{ relation.department }} </h4>
+                  <h4 class="media-heading"><a href="http://imdb.com/title/{{ relation.movie.imdb_id }}/" target="_blank">{{ relation.movie.original_title }}</a> via <a href="http://imdb.com/name/{{ relation.person.imdb_id }}/" target="_blank">{{ relation.person.name }}</a>, {{ relation.department }} <span class="pull-right">vote: {{ relation.movie.vote_average  }}</span></h4>
                   <p>
                      {{ relation.movie.overview }}
                   </p>
