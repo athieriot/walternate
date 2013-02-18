@@ -1,6 +1,6 @@
 <h4>You may love too:</h4>
 <table class="table">
-   <tr ng-repeat="relation in relations | orderBy:'department'">
+   <tr ng-repeat="relation in relations | orderBy:['department', 'person.name', 'movie.vote']">
       <td>
       <div class="media">
          <a href="#/Relations/{{ relation.movie.id }}" class="thumbnail pull-left" style="margin-right: 10px;">
