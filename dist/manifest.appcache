@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# Time: Sun Feb 17 2013 21:46:21 GMT+0000 (GMT)
+# Time: Mon Feb 18 2013 19:20:15 GMT+0000 (GMT)
 # This manifest was created by confess.js, http://github.com/jamesgpearce/confess
 #
 # Retrieved URL: http://localhost:3501/#/
@@ -21,6 +21,7 @@ CACHE MANIFEST
 #  configFile: /home/aurelien/Dropbox/sources/yeoman/yeoman-custom/cli/lib/support/confess.json
 
 CACHE:
+components/angular-local-storage/angular-local-storage.js
 components/angular-resource/angular-resource.js
 components/angular/angular.js
 components/underscore.string/lib/underscore.string.js
@@ -28,7 +29,7 @@ components/underscore/underscore-min.js
 http://localhost:3501/app/images/glyphicons-halflings-white.png
 http://localhost:3501/app/images/glyphicons-halflings.png
 http://www.google-analytics.com/ga.js
-scripts/3a9af4da.scripts.js
+scripts/aa388220.scripts.js
 styles/cff1b42f.main.css
 
 NETWORK:

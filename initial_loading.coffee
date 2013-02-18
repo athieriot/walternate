@@ -103,8 +103,8 @@ async.waterfall [
       moviedb.call 'genreList', {}, {}, callback
    ,
    (genres, callback) ->
-      #async.forEachSeries genres.genres, dumpGenre, callback
-      dumpGenre genres.genres[32], callback
+      async.forEachSeries genres.genres, dumpGenre, callback
+      #dumpGenre genres.genres[5], callback
 ], (err, result) =>
    time = startDate.fromNow()
    if (err)
