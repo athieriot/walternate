@@ -6,7 +6,7 @@ walternateApp.controller('RelationsController', ['$scope', '$resource', '$routeP
    $scope.graphdb = $resource("/query/:id", {id:'@id', format:'json'} );
 
    $scope.relations = $scope.graphdb.query({id: $routeParams.movieId});
-   
+
    localNavigationStorage.add($routeParams.movieId);
 }]);
 
