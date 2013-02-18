@@ -24,39 +24,60 @@
       <![endif]-->
       <!-- Select more than one movie -->
       <!-- Having a better Index -->
-      <div class="container" ng-controller="SearchController">
-         <div class="navbar">
-            <div class="navbar-inner">
-               <a class="brand" href="#">Walternate</a>
-               <ul class="nav">
-                  <form ng-submit="search(movieTitle)" class="navbar-search pull-left">
-                     <span>Search for a movie you love</span>
-                     <input id="searchedTitle" type="text" class="search-query" ng-model="movieTitle" autofocus />
-                  </form>
-               </ul>
+      <div class="container">
+         <div ng-controller="SearchController">
+            <div class="navbar">
+               <div class="navbar-inner">
+                  <a class="brand" href="#">Walternate</a>
+                  <ul class="nav">
+                     <form ng-submit="search(movieTitle)" class="navbar-search pull-left">
+                        <span>Search for a movie you love</span>
+                        <input id="searchedTitle" type="text" class="search-query" ng-model="movieTitle" autofocus />
+                     </form>
+                  </ul>
+               </div>
             </div>
+
+            <ul class="thumbnails row">
+               <li ng-repeat="movie in movies.results | filter:popular">
+                  <a href="#/Relations/{{ movie.id }}" ng-click="clear()" class="thumbnail">
+
+                     <img alt="{{ movie.original_title }}" src="{{ configuration.images.base_url }}/w92/{{movie.poster_path}}" />
+                  </a>
+               </li>
+            </ul>
          </div>
-
-         <ul class=thumbnails>
-            <li ng-repeat="movie in movies.results | filter:popular">
-               <a href="#/Relations/{{ movie.id }}" class="thumbnail">
-
-                  <img alt="{{ movie.original_title }}" src="{{ configuration.images.base_url }}/w92/{{movie.poster_path}}" />
-               </a>
-            </li>
-         </ul>
       </div>
+      <div class="container-fluid">
+         <div class="row-fuild">
+            <div class="span2" ng-controller="LocalNavigationController">
+               <div class="well sidebar-nav">
+                  <ul class="nav">
+                     <li class="nav-header">
+                        History:
+                        <a ng-click="clearNavigation()">clear</a>
+                     </li>
+                     <li ng-repeat="movie in history | orderBy:reverse">
+                        <span class="thumbnail">
 
+                           <img alt="{{ movie.original_title }}" src="{{ configuration.images.base_url }}/w92/{{movie.poster_path}}" />
+                        </span>
+                        <br />
+                     </li>
+                  </ul>
+               </div>
+            </div>
 
-      <!-- Add your site or application content here -->
-      <div class="container" ng-view></div>
+            <!-- Add your site or application content here -->
+            <div class="offset2 span10" ng-view></div>
+         </div>
+      </div>
 
       <script src="components/angular/angular.js"></script>
       <script src="components/angular-resource/angular-resource.js"></script>
-      <script src="components/angular-local-storage/angular-local-storage.js"></script>
       <script src="components/underscore/underscore-min.js"></script>
       <script src="components/underscore.string/lib/underscore.string.js"></script>
-      <script src="scripts/aa388220.scripts.js"></script>
+      <script src="scripts/50c7570e.scripts.js"></script>
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
       <script>

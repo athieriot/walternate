@@ -1,6 +1,6 @@
 'use strict';
 
-var walternateApp = angular.module('walternateApp', ['ngResource', 'LocalStorageModule'])
+var walternateApp = angular.module('walternateApp', ['ngResource'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/Relations/:movieId', {
