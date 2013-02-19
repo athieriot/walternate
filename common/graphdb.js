@@ -63,7 +63,7 @@ var addPerson = function(person, hop) {
 }
 
 var addRelation = function(person, movie, personNode, movieNode, hop) {
-   neodb.getIndexedRelationship("person_movie", "id", identifyRelation(person, movie), function(err, relations) {
+   neodb.getIndexedRelationships("person_movie", "id", identifyRelation(person, movie), function(err, relations) {
       if(err || _.isEmpty(relations)) {
          async.waterfall([
             function(callback) {
