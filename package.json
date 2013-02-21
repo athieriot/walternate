@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/yeoman test --verbose"
+    "test": "node_modules/.bin/testacular start --single-run --verbose",
+    "frisby": "node_modules/.bin/jasmine-node test/frisby/*.* --junitreport --coffee'"
   },
   "repository": "",
   "author": "athieriot",
@@ -28,9 +29,10 @@
      "coffee-script": "1.4.x"
   },
   "devDependencies": {
-     "frisby": "0.6.7",
-     "testacular": "0.4.x",
-     "yeoman": "~0.9.6"
+     "frisby": "0.6.x",
+     "testacular": "0.5.x",
+     "yeoman": "~0.9.6",
+     "jasmine-node": "1.2.x"
   },
   "engines": {
       "node": "0.8.x",
