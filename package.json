@@ -29,6 +29,7 @@
   },
   "devDependencies": {
      "frisby": "0.6.7",
+     "testacular": "0.4.x",
      "yeoman": "~0.9.6"
   },
   "engines": {
