@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node_modules/.bin/testacular start --single-run --verbose",
-    "frisby": "node_modules/.bin/jasmine-node test/frisby/*.* --junitreport --coffee'"
+    "test": "npm run testacular && npm run frisby",
+    "testacular": "node_modules/.bin/testacular start --single-run --verbose",
+    "frisby": "node_modules/.bin/jasmine-node test/frisby/*.* --junitreport --coffee"
   },
   "repository": "",
   "author": "athieriot",
