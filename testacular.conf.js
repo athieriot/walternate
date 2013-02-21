@@ -7,9 +7,9 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'app/scripts/vendor/angular.js',
-  'test/vendor/angular-mocks.js',
-  'app/scripts/*.js',
+  'components/angular/angular.js',
+  'components/angular-mocks/angular-mocks.js',
+  'components/angular-resource/angular-resource.js',
   'app/scripts/**/*.js',
   'test/mock/**/*.js',
   'test/spec/**/*.js'
@@ -24,8 +24,11 @@ exclude = [
 
 // test results reporter to use
 // possible values: dots || progress
-reporter = 'progress';
+reporters = ['progress', 'coverage'];
 
+preprocessors = {
+   'app/scripts/**/*.js': 'coverage'
+};
 
 // web server port
 port = 8080;

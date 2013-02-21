@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/yeoman test --verbose"
   },
   "repository": "",
   "author": "athieriot",
@@ -24,10 +24,12 @@
      "winston": "0.6.2",
      "progress": "0.1.0",
      "underscore.string": "2.3.1",
-     "npm": "1.2.x"
+     "npm": "1.2.x",
+     "coffee-script": "1.4.x"
   },
   "devDependencies": {
-     "frisby": "0.6.7"
+     "frisby": "0.6.7",
+     "yeoman": "~0.9.6"
   },
   "engines": {
       "node": "0.8.x",

@@ -53,14 +53,15 @@ frisby.create('Search for a genre list')
 frisby.create('Search for the movies of a genre')
    .get('http://' + server + '/api/genreMovies/28')
    .expectStatus(200)
-   .expectJSON("results.?", {
-      id: 311,
-      title: "Once Upon a Time in America"
-   })
    .expectJSON({
       total_results: (number) -> number > 700 && number < 10000
    })
+   .expectJSONTypes("results.*", {
+      id: Number,
+      title: String 
+   })
    .expectJSONTypes({
+      results: Array,
       page: Number,
       total_pages: Number,
       total_results: Number
@@ -70,14 +71,15 @@ frisby.create('Search for the movies of a genre')
 frisby.create('Search for ALL the movies of a genre')
    .get('http://' + server + '/api/genreMovies/28?include_all_movies=true')
    .expectStatus(200)
-   .expectJSON("results.?", {
-      id: 57414,
-      title: "Ember Days"
-   })
    .expectJSON({
       total_results: (number) -> number > 10000
    })
+   .expectJSONTypes('results.*', {
+      id: Number,
+      title: String
+   })
    .expectJSONTypes({
+      results: Array,
       page: Number,
       total_pages: Number,
       total_results: Number
