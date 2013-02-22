@@ -185,12 +185,4 @@ module.exports = function( grunt ) {
     });
   });
 
-  grunt.registerTask('frisby', 'run the frisby tests', function() {
-    var done = this.async();
-    require('child_process').exec('jasmine-node test/frisby/*.* --junitreport --coffee', function(err, stdout) {
-      grunt.log.write(stdout);
-      done(err);
-    })
-  
-  });
 };

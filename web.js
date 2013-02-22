@@ -1,3 +1,8 @@
+require('nodefly').profile(
+   process.env.NODEFLY_APPLICATION_KEY,
+   [process.env.APPLICATION_NAME,'Heroku']
+);
+
 var gzippo = require('gzippo');
 var app = require('./server/index.js')
 
