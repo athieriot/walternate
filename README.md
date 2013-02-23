@@ -1,7 +1,7 @@
 Walternate
 ==========
 
-[![Build Status](https://travis-ci.org/[athieriot]/[walternate].png)](https://travis-ci.org/[athieriot]/[walternate])
+[![Build Status](https://travis-ci.org/athieriot/walternate.png)](https://travis-ci.org/athieriot/walternate)
 
 Walternate is a small project that will help you discover new Movies and TV Shows.
 
