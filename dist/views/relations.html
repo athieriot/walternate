@@ -3,7 +3,7 @@
    <tr ng-repeat="relation in relations | filter:uniq | orderBy:['department', 'person.name', 'movie.vote']">
       <td>
       <div class="media">
-         <a href="#/Relations/{{ relation.movie.id }}" class="thumbnail pull-left" style="margin-right: 10px;">
+         <a href="#/Relations/{{ relation.movie.id }}" class="thumbnail pull-left" style="margin-right: 10px">
             <img class="media-object" ng-src="{{ configuration.images.base_url }}/w92/{{relation.movie.poster_path}}">
          </a>
          <div class="media-body">

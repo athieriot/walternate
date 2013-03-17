@@ -1,7 +1,7 @@
 'use strict';
 
 var walternateApp = angular.module('walternateApp', ['ngResource'])
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/Relations/:movieId', {
         templateUrl: 'views/relations.html',

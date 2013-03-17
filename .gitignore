@@ -1,7 +1,6 @@
-intermediate/
-publish/
-temp/
-.sass-cache/
 node_modules/
+.tmp
+.sass-cache
+app/components
 reports/
 coverage/

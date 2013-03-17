@@ -1,0 +1,20 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'frisby' ]
+2 info using npm@1.2.14
+3 info using node@v0.10.0
+4 verbose node symlink /usr/bin/node
+5 verbose read json /home/aurelien/Dropbox/sources/walternate/test/spec/controllers/package.json
+6 error Error: ENOENT, open '/home/aurelien/Dropbox/sources/walternate/test/spec/controllers/package.json'
+7 error If you need help, you may report this log at:
+7 error     <http://github.com/isaacs/npm/issues>
+7 error or email it to:
+7 error     <npm-@googlegroups.com>
+8 error System Linux 3.5.0-25-generic
+9 error command "/usr/bin/node" "/usr/bin/npm" "run" "frisby"
+10 error cwd /home/aurelien/Dropbox/sources/walternate/test/spec/controllers
+11 error node -v v0.10.0
+12 error npm -v 1.2.14
+13 error path /home/aurelien/Dropbox/sources/walternate/test/spec/controllers/package.json
+14 error code ENOENT
+15 error errno 34
+16 verbose exit [ 34, true ]
