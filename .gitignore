@@ -4,3 +4,4 @@ node_modules/
 app/components
 reports/
 coverage/
+npm-debug.log
