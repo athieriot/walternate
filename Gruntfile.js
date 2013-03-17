@@ -228,6 +228,16 @@ module.exports = function (grunt) {
           ]
         }]
       }
+    },
+    jasmine_node: {
+       specNameMatcher: "spec",
+       extensions: "coffee",
+       projectRoot: ".",
+       requirejs: true,
+       jUnit: {
+          report: true,
+          savePath : "./reports/"
+       }
     }
   });
 
@@ -251,6 +261,10 @@ module.exports = function (grunt) {
     'compass',
     'connect:test',
     'testacular'
+  ]);
+
+  grunt.registerTask('func', [
+    'jasmine_node'
   ]);
 
   grunt.registerTask('build', [

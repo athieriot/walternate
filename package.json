@@ -47,10 +47,11 @@
     "grunt-open": "~0.1.0",
     "matchdep": "~0.1.1",
     "grunt-google-cdn": "~0.1.0",
-    "grunt-ngmin": "~0.0.1"
+    "grunt-ngmin": "~0.0.1",
+    "grunt-jasmine-node": "~0.0.6",
   },
   "engines": {
     "node": ">=0.8.0",
-    "npm":  ">=1.2.x"
+    "npm": ">=1.2.x"
   }
 }
