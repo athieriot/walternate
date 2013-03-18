@@ -5,8 +5,8 @@
   "description": "Trying to find the movies you love by finding your favourite actors and producers",
   "scripts": {
     "test": "npm run testacular && npm run frisby",
-    "testacular": "node_modules/.bin/grunt testacular",
-    "frisby": "node_modules/.bin/grunt func"
+    "testacular": "grunt testacular",
+    "frisby": "grunt func"
   },
   "dependencies": {
     "express": "3.1.0",
