@@ -5,8 +5,8 @@
   "description": "Trying to find the movies you love by finding your favourite actors and producers",
   "scripts": {
     "test": "npm run testacular && npm run frisby",
-    "testacular": "node_modules/.bin/testacular start --single-run --verbose",
-    "frisby": "node_modules/.bin/jasmine-node test/frisby/*.* --junitreport --coffee"
+    "testacular": "grunt test",
+    "frisby": "grunt func"
   },
   "dependencies": {
     "express": "3.1.0",
@@ -27,7 +27,6 @@
   "devDependencies": {
     "testacular": "0.5.x",
     "frisby": "0.6.x",
-    "jasmine-node": "1.2.x",
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "0.4.0rc7",
     "grunt-contrib-concat": "0.1.2rc6",
