@@ -5,7 +5,7 @@
   "description": "Trying to find the movies you love by finding your favourite actors and producers",
   "scripts": {
     "test": "npm run testacular && npm run frisby",
-    "testacular": "node_modules/.bin/grunt test",
+    "testacular": "node_modules/.bin/grunt testacular",
     "frisby": "node_modules/.bin/grunt func"
   },
   "dependencies": {
@@ -48,7 +48,6 @@
     "grunt-google-cdn": "~0.1.0",
     "grunt-ngmin": "~0.0.1",
     "grunt-jasmine-node": "~0.0.6",
-    "grunt-cli": "~0.1.6"
   },
   "engines": {
     "node": ">=0.8.0",
