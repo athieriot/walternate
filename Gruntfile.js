@@ -1,7 +1,8 @@
 'use strict';
+
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
+var mountFolder = function (dir) {
+  return require('path').resolve(dir);
 };
 
 module.exports = function (grunt) {
@@ -12,6 +13,12 @@ module.exports = function (grunt) {
   var yeomanConfig = {
     app: 'app',
     dist: 'dist'
+  };
+
+  var address = require('fs').readFileSync('.server').toString().split(':');
+  var serverConfig = {
+     host: address[0],
+     port: process.env.PORT || address[1]
   };
 
   try {
@@ -41,38 +48,32 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg}'
         ],
         tasks: ['livereload']
+      },
+      express: {
+        files: ['server/*.{js, coffee}']
       }
     },
-    connect: {
+    express: {
       livereload: {
         options: {
-          port: 9000,
+          port: serverConfig.port,
           // Change this to '0.0.0.0' to access the server from outside.
           hostname: 'localhost',
-          middleware: function (connect) {
-            return [
-              lrSnippet,
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, yeomanConfig.app)
-            ];
-          }
+          bases: [mountFolder(yeomanConfig.app), mountFolder('.tmp')],
+          server: mountFolder('./server/index'),
         }
       },
       test: {
         options: {
-          port: 9000,
-          middleware: function (connect) {
-            return [
-              mountFolder(connect, '.tmp'),
-              mountFolder(connect, 'test')
-            ];
-          }
+          port: serverConfig.port,
+          bases: [mountFolder('test'), mountFolder('.tmp')],
+          server: mountFolder('./server/index'),
         }
       }
     },
     open: {
       server: {
-        url: 'http://localhost:<%= connect.livereload.options.port %>'
+        url: 'http://localhost:<%= express.livereload.options.port %>'
       }
     },
     clean: {
@@ -250,7 +251,7 @@ module.exports = function (grunt) {
     'coffee:dist',
     'compass:server',
     'livereload-start',
-    'connect:livereload',
+    'express:livereload',
     'open',
     'watch'
   ]);
@@ -259,7 +260,7 @@ module.exports = function (grunt) {
     'clean:server',
     'coffee',
     'compass',
-    'connect:test',
+    'express:test',
     'testacular'
   ]);
 
