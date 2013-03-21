@@ -4,18 +4,20 @@ var _ = require('underscore')._;
 
 module.exports = function(app) {
 
-   app.get('/query/:title', function(req, res) {
-      var department = req.query.department || ".*";
+  app.route({ path: '/query/{title}',
+    method: 'GET',
+    handler: function(request) {
+      var department = request.query.department || ".*";
 
       var query = [
-         'START me = node:movie("id:' + req.params.title + '")',
+         'START me = node:movie("id:' + request.params.title + '")',
          'MATCH (me)<-[relation:beIn]-(person)-[:beIn*..2]->(movie)',
          'WHERE relation.department =~ "' + department + '"',
          'RETURN movie, person, relation'
       ].join('\n');
 
       neodb.query(query, {}, function (err, results) {
-         if (err) res.send(err);
+         if (err) request.reply(err);
          else {
             var summary = results.map(function (result) {
                return {
@@ -24,9 +26,9 @@ module.exports = function(app) {
                   department: result['relation']['_data']['data'].department
                }
             });
-
-            res.send(_.uniq(summary));
+            request.reply(_.uniq(summary));
          }
       });
-   });
+   }
+  });
 };
