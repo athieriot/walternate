@@ -1,6 +1,6 @@
 'use strict';
 
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var address = require('fs').readFileSync('.server').toString().split(':');
 var mountFolder = function (dir) {
   return require('path').resolve(dir);
 };
@@ -15,7 +15,6 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
-  var address = require('fs').readFileSync('.server').toString().split(':');
   var serverConfig = {
      host: address[0],
      port: process.env.PORT || address[1]
@@ -27,6 +26,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     yeoman: yeomanConfig,
+    server: serverConfig,
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -49,31 +49,34 @@ module.exports = function (grunt) {
         ],
         tasks: ['livereload']
       },
-      express: {
-        files: ['server/*.{js, coffee}']
+      hapi: {
+        files: ['server/*.{js, coffee}'],
+        tasks: ['hapi:livereload']
       }
     },
-    express: {
+    hapi: {
       livereload: {
         options: {
-          port: serverConfig.port,
-          // Change this to '0.0.0.0' to access the server from outside.
-          hostname: 'localhost',
-          bases: [mountFolder(yeomanConfig.app), mountFolder('.tmp')],
           server: mountFolder('./server/index'),
+          bases: {
+            '/': mountFolder(yeomanConfig.app),
+            '/styles': mountFolder('.tmp/styles/')
+          }
         }
       },
       test: {
         options: {
-          port: serverConfig.port,
-          bases: [mountFolder('test'), mountFolder('.tmp')],
           server: mountFolder('./server/index'),
+          bases: {
+            '/': mountFolder('test'),
+            '/styles': mountFolder('.tmp/styles/')
+          }
         }
       }
     },
     open: {
       server: {
-        url: 'http://localhost:<%= express.livereload.options.port %>'
+        url: 'http://localhost:<%= server.port %>'
       }
     },
     clean: {
@@ -251,7 +254,7 @@ module.exports = function (grunt) {
     'coffee:dist',
     'compass:server',
     'livereload-start',
-    'express:livereload',
+    'hapi:livereload',
     'open',
     'watch'
   ]);
@@ -260,12 +263,9 @@ module.exports = function (grunt) {
     'clean:server',
     'coffee',
     'compass',
-    'express:test',
+    'hapi:test',
+    'jasmine_node',
     'testacular'
-  ]);
-
-  grunt.registerTask('func', [
-    'jasmine_node'
   ]);
 
   grunt.registerTask('build', [

@@ -2,9 +2,22 @@ var moviedb = require('../common/moviedb');
 
 module.exports = function(app) {
 
-   app.get('/api/:method/:parameter?', function(req, res) {
-      moviedb.call(req.params.method, req.params.parameter, req.query, function(err, result) {
-         res.send(result);
-      });
-   });
+  var handleRequest = function(request) {
+
+    moviedb.call(
+      request.params.method,
+      request.params.parameter,
+      request.query,
+      function(err, result) {
+        request.reply(result);
+      }
+    );
+  };
+
+  app.route({ path: '/api/{method}/{parameter?}',
+    method: 'GET', handler: handleRequest
+  });
+  app.route({ path: '/api/{method}',
+    method: 'GET', handler: handleRequest
+  });
 };
