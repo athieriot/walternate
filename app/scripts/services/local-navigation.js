@@ -1,15 +1,20 @@
-'use strict';
+'use strict'
 
 walternateApp.factory('localNavigationStorage', ['$rootScope', '$resource', function($rootScope, $resource) {
    var STORAGE_ID = 'walternate-history';
 
    var movieResource = $resource("/api/movieInfo/:id", {id:'@id', format:'json'} );
 
+   var init = function() {
+     $rootScope.localNavigation = get();
+   };
+
    var get = function() {
       return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
    }
 
    return {
+      init: init,
       get: get,
       add: function(movieId) {
          movieResource.get({id: movieId}, function(movie) {

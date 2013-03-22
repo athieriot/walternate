@@ -10,4 +10,7 @@ var walternateApp = angular.module('walternateApp', ['ngResource'])
       .otherwise({
         redirectTo: '/'
       });
+  }])
+  .run(['localNavigationStorage', function(localNavigationStorage) {
+       localNavigationStorage.init();
   }]);
