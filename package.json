@@ -4,8 +4,8 @@
   "author": "athieriot",
   "description": "Trying to find the movies you love by finding your favourite actors and producers",
   "scripts": {
-    "test": "npm run testacular && npm run frisby",
-    "testacular": "grunt testacular",
+    "test": "npm run karma && npm run frisby",
+    "karma": "grunt karma",
     "frisby": "grunt jasmine_node"
   },
   "dependencies": {

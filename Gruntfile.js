@@ -92,9 +92,9 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
-    testacular: {
+    karma: {
       unit: {
-        configFile: 'testacular.conf.js',
+        configFile: 'karma.conf.js',
         singleRun: true
       }
     },
@@ -265,7 +265,7 @@ module.exports = function (grunt) {
     'compass',
     'hapi:test',
     'jasmine_node',
-    'testacular'
+    'karma'
   ]);
 
   grunt.registerTask('build', [
