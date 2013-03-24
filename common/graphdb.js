@@ -27,15 +27,17 @@ var identifyRelation = function(person, movie) {
 var addMovie = function(movie, hop) {
    neodb.getIndexedNodes("movie", "id", identifyMovie(movie), function(err, nodeMovies) {
       if(err || _.isEmpty(nodeMovies)) {
+         var nodeMovieGlobal = {};
          async.waterfall([
             function(callback) {
                neodb.createNode(objectifyMovie(movie)).save(callback);
             },
             function(nodeMovie, callback) {
-               nodeMovie.index("movie", "id", identifyMovie(movie), async.apply(callback, nodeMovie));
+               nodeMovieGlobal = nodeMovie;
+               nodeMovie.index("movie", "id", identifyMovie(movie), callback);
             }
-         ], function(nodeMovie, err, result) {
-            hop(err, nodeMovie);
+         ], function(err, result) {
+            hop(err, nodeMovieGlobal);
          });
       } else {
          hop(null, _.first(nodeMovies));
@@ -46,15 +48,17 @@ var addMovie = function(movie, hop) {
 var addPerson = function(person, hop) {
    neodb.getIndexedNodes("person", "id", identifyPerson(person), function(err, nodePersons) {
       if(err || _.isEmpty(nodePersons)) {
+         var nodePersonGlobal = {};
          async.waterfall([
             function(callback) {
                neodb.createNode(objectifyPerson(person)).save(callback);
             },
             function(nodePerson, callback) {
-               nodePerson.index("person", "id", identifyPerson(person), async.apply(callback, nodePerson));
+               nodePersonGlobal = nodePerson;
+               nodePerson.index("person", "id", identifyPerson(person), callback);
             }
-         ], function(nodePerson, err, result) {
-            hop(err, nodePerson);
+         ], function(err, result) {
+            hop(err, nodePersonGlobal);
          });
       } else {
          hop(null, _.first(nodePersons));

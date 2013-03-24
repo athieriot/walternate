@@ -109,7 +109,7 @@ async.waterfall [
    time = startDate.fromNow()
    if (err)
       @logger.info "\n"
-      @logger.info "Something bad happening:  #{err}"
+      @logger.info "Something bad happened:  #{err}"
    else
       @logger.info "\n"
       @logger.info "Process time: #{time}"
