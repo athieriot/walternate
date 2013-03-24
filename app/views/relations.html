@@ -1,4 +1,5 @@
-<h4>You may love too:</h4>
+<h4>Since you liked this movie, you might also like:</h4>
+
 <table class="table">
    <tr ng-repeat="relation in relations | filter:uniq | orderBy:['department', 'person.name', 'movie.vote']">
       <td>

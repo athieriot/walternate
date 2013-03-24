@@ -7,6 +7,10 @@ var walternateApp = angular.module('walternateApp', ['ngResource'])
         templateUrl: 'views/relations.html',
         controller: 'RelationsController'
       })
+      .when('/Relations/:movieId/graph', {
+        templateUrl: 'views/graph.html',
+        controller: 'GraphController'
+      })
       .otherwise({
         redirectTo: '/'
       });

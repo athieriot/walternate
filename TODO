@@ -1,2 +1,10 @@
-sourceMap for coffee/minified/sass
-
+- sourceMap for coffee/minified/sass
+- Remove Doublons
+- If only one result, search relations directly
+- Homepage with popular search
+- No synopsis on the result page
+- Persons picture clickable
+- History of navigation smaller and horizontal
+- vote = user vote/note
+- No more limitations for the search
+- Movies clickable more obvious
