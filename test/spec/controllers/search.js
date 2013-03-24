@@ -42,9 +42,4 @@ describe('Controller: SearchController', function() {
       scope.search(2);
       expect(scope.movie).not.toBe(null);
    });
-
-   it('should filter the least popular movies', function() {
-      expect(scope.popular({vote_count: 50})).toBe(true);
-      expect(scope.popular({vote_count: 5})).toBe(false);
-   });
 });

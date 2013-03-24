@@ -1,5 +1,8 @@
 frisby = require 'frisby'
-server = require('fs').readFileSync('.server')
+address = require('fs').readFileSync('.server').toString().split(':');
+host = "localhost"
+port = "3501"
+server = host + ":" + port;
 
 frisby.create('Search for a movie')
    .get('http://' + server + '/api/searchMovie/stargate')

@@ -1,13 +1,22 @@
-<h4>You may love too:</h4>
+<h4>Since you liked this movie, you might also like:</h4>
+
 <table class="table">
-   <tr ng-repeat="relation in relations | filter:uniq | orderBy:['department', 'person.name', 'movie.vote']">
+  <input class="pull-right search-query" ng-model="filterText" placeholder="Filter by">
+  <br>
+  <br>
+   <tr ng-repeat="relation in relations | filter:filterText | orderBy:['movie.vote_average']:true">
       <td>
       <div class="media">
          <a href="#/Relations/{{ relation.movie.id }}" class="thumbnail pull-left" style="margin-right: 10px">
             <img class="media-object" ng-src="{{ configuration.images.base_url }}/w92/{{relation.movie.poster_path}}">
          </a>
          <div class="media-body">
-            <h4 class="media-heading"><a href="http://imdb.com/title/{{ relation.movie.imdb_id }}/" target="_blank">{{ relation.movie.original_title }}</a> via <a href="http://imdb.com/name/{{ relation.person.imdb_id }}/" target="_blank">{{ relation.person.name }}</a>, {{ relation.department }} <span class="pull-right">vote: {{ relation.movie.vote_average  }}</span></h4>
+           <h4 class="media-heading">
+             <a href="http://imdb.com/title/{{ relation.movie.imdb_id }}/" target="_blank">{{ relation.movie.original_title }}</a>
+             via <a href="http://imdb.com/name/{{ relation.person.imdb_id }}/" target="_blank">{{ relation.person.name }}</a>,
+             {{ relation.department }}
+             <span class="pull-right">vote: {{ relation.movie.vote_average  }}</span></h4>
+
             <p>
                {{ relation.movie.overview }}
             </p>

@@ -39,7 +39,7 @@
             </div>
 
             <ul class="thumbnails row">
-               <li ng-repeat="movie in movies.results | filter:popular">
+               <li ng-repeat="movie in movies.results">
                   <a href="#/Relations/{{ movie.id }}" ng-click="clear()" class="thumbnail">
 
                      <img alt="{{ movie.original_title }}" ng-src="{{ configuration.images.base_url }}/w92/{{movie.poster_path}}">
@@ -77,6 +77,7 @@
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular-resource.min.js"></script>
       <script src="components/underscore/underscore-min.js"></script>
       <script src="components/underscore.string/lib/underscore.string.js"></script>
+      <script src="components/sigma/sigma.min.js"></script>
       <script src="scripts/scripts.js"></script>
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
