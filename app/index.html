@@ -39,7 +39,7 @@
             </div>
 
             <ul class="thumbnails row">
-               <li ng-repeat="movie in movies.results | filter:popular">
+               <li ng-repeat="movie in movies.results">
                   <a href="#/Relations/{{ movie.id }}" ng-click="clear()" class="thumbnail">
 
                      <img alt="{{ movie.original_title }}" ng-src="{{ configuration.images.base_url }}/w92/{{movie.poster_path}}" />

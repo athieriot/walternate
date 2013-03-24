@@ -9,10 +9,6 @@ walternateApp.controller('SearchController', ['$scope', '$resource', function($s
       $scope.movies = $scope.moviedb.get({title: movieTitle});
    }
 
-   $scope.popular = function(movie) {
-      return movie.vote_count > 10;
-   }
-
    $scope.clear = function() {
       $scope.movies = {};
    }
