@@ -11,7 +11,7 @@ module.exports = function(app) {
 
       var query = [
          'START me = node:movie("id:' + request.params.title + '")',
-         'MATCH (me)<-[relation:beIn]-(person)-[:beIn*..2]->(movie)',
+         'MATCH (me)<-[relation:beIn]-(person)-[:beIn]->(movie)',
          'WHERE relation.department =~ "' + department + '"',
          'RETURN movie, person, relation'
       ].join('\n');

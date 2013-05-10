@@ -6,5 +6,7 @@
 - Persons picture clickable
 - History of navigation smaller and horizontal
 - vote = user vote/note
-- No more limitations for the search
 - Movies clickable more obvious
+- Since you liked {{ movie.title }}, you might also like:
+- Grunt deploy
+- Loading notice
